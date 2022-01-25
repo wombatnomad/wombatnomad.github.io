@@ -1,7 +1,6 @@
 import { Bitmap } from "../lib/bmp.js";
 import * as fs from "fs";
 
-
 const H = 400;
 const W = 400;
 const bmp = new Bitmap(W, H);
@@ -20,6 +19,6 @@ for (let x = 0; x < W; x++) {
         }
     }
 }
-const array = bmp.toUint8Array();
+const array = bmp.toBMPBytes();
 
 fs.writeFileSync('out.bmp', array);
