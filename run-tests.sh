@@ -2,9 +2,13 @@
 
 # Run all tests
 
+SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+cd $SCRIPT_DIR
+
 failcnt=0
-for testfile in tests/*.js; do
-    echo -e -n "\x1B[1m"`basename $testfile`"... \x1B[0m"
+for testfile in $(find tests -type f -name "*.js"); do
+    path=${testfile#tests/}
+    echo -e -n "\x1B[1m$path... \x1B[0m"
     if node $testfile; then
         echo -e "\x1B[32mPASS\x1B[0m"
     else
