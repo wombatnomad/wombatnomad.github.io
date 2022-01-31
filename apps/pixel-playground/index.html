@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Pixel Playground</title>
+    <style>
+        #title {
+            display: table;
+            margin: auto;
+        }
+
+        #img {
+            display: table;
+            border-style: solid;
+            margin: 0 auto;
+        }
+
+        #render-button-div {
+            display: table;
+            margin: 5px auto;
+        }
+
+        #code {
+            display: table;
+            width: 400px;
+            height: 200px;
+            margin: 5px auto;
+            font-family: 'Courier New', Courier, monospace;
+        }
+    </style>
+    <script type="module" src="index.js"></script>
+</head>
+
+<body>
+    <h1 id="title">Pixel Playground</h1>
+    <div>
+        <img id="img" width="400" height="400"></img>
+        <div id="render-button-div">
+            <button id="render-button">Render</button>
+        </div>
+        <textarea id="code">bg 0xFF646414</textarea>
+    </div>
+</body>
+
+</html>
