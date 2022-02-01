@@ -7,6 +7,7 @@ assert.eq(repr('hello'), "\"hello\"");
 assert.eq(repr([1, 2, 3]), '[1, 2, 3]');
 assert.eq(repr([1, 2, 3, 'hello']), '[1, 2, 3, \"hello\"]');
 
+assert.eq(repr(undefined), 'undefined');
 
 class CustomToString {
     toString() {
