@@ -1,6 +1,12 @@
 {
     "compilerOptions": {
         "downlevelIteration": true,
+        "strictNullChecks": true,
+        "strictFunctionTypes": true,
+        "strict": true,
+        "strictPropertyInitialization": true,
+        "alwaysStrict": true,
+        "strictBindCallApply": true,
         "target": "es5",
         "checkJs": true,
         "module": "es2020"
