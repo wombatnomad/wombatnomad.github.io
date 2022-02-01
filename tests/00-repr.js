@@ -18,3 +18,6 @@ assert.eq(repr(new CustomToString()), '<some-custom-toString>');
 
 class NoCustomToString { }
 assert.eq(repr(new NoCustomToString()), '[object Object]');
+
+// pod
+assert.eq(repr({ b: 'world', a: 'hello' }), `{"b": "world", "a": "hello"}`);

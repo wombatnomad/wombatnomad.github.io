@@ -21,3 +21,8 @@ class Sample {
     }
 }
 cmp.lt(new Sample(), new Sample());
+
+
+// When using native equality, two pods with equivalent values
+// are not considered equal
+assert.xneq({ a: 2 }, { a: 2 });
