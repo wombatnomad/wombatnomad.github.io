@@ -27,30 +27,31 @@ function lexLN(lexer, s) {
 {
     const lexer = new ALexer();
     assert.eq(
-        lex(lexer, 'hello, "world" 123 8.88 0xAF'),
+        lex(lexer, 'class hello, "world" 123 8.88 0xAF'),
         [
-            { "type": "@IDENT", "value": "hello" },
+            { "type": "class" },
+            { "type": "NAME", "value": "hello" },
             { "type": "," },
-            { "type": "@STRING", "value": "world" },
-            { "type": "@NUMBER", "value": 123 },
-            { "type": "@NUMBER", "value": 8.88 },
-            { "type": "@NUMBER", "value": 175 },
-            { "type": "@EOF" },
+            { "type": "STRING", "value": "world" },
+            { "type": "NUMBER", "value": 123 },
+            { "type": "NUMBER", "value": 8.88 },
+            { "type": "NUMBER", "value": 175 },
+            { "type": "EOF" },
         ],
     );
     assert.eq(
         lex(lexer, '"\\""'),
         [
-            { "type": "@STRING", "value": "\"" },
-            { "type": "@EOF" },
+            { "type": "STRING", "value": "\"" },
+            { "type": "EOF" },
         ],
     );
     assert.eq(
         lex(lexer, `
         `),
         [
-            { "type": "@NEWLINE" },
-            { "type": "@EOF" },
+            { "type": "NEWLINE" },
+            { "type": "EOF" },
         ],
     );
     assert.eq(
@@ -59,18 +60,18 @@ function lexLN(lexer, s) {
         }
         `),
         [
-            { "type": "@IDENT", "line": 1 },
-            { "type": "@IDENT", "line": 1 },
+            { "type": "NAME", "line": 1 },
+            { "type": "NAME", "line": 1 },
             { "type": "{", "line": 1 },
-            { "type": "@NEWLINE", "line": 1 },
-            { "type": "@IDENT", "line": 2 },
-            { "type": "@IDENT", "line": 2 },
-            { "type": "@IDENT", "line": 2 },
+            { "type": "NEWLINE", "line": 1 },
+            { "type": "NAME", "line": 2 },
+            { "type": "NAME", "line": 2 },
+            { "type": "NAME", "line": 2 },
             { "type": ";", "line": 2 },
-            { "type": "@NEWLINE", "line": 2 },
+            { "type": "NEWLINE", "line": 2 },
             { "type": "}", "line": 3 },
-            { "type": "@NEWLINE", "line": 3 },
-            { "type": "@EOF", "line": 4 },
+            { "type": "NEWLINE", "line": 3 },
+            { "type": "EOF", "line": 4 },
         ],
     );
 }
