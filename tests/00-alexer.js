@@ -14,6 +14,16 @@ function lex(lexer, s) {
             { type: t.type, value: t.value });
 }
 
+/**
+ * Lex and get line numbers
+ * @param {ALexer} lexer
+ * @param {string} s
+ * @returns {{type: string, line: number}[]}
+ */
+function lexLN(lexer, s) {
+    return lexer.list(s).map(t => ({ type: t.type, line: t.mark.lineNumber }));
+}
+
 {
     const lexer = new ALexer();
     assert.eq(
@@ -41,6 +51,26 @@ function lex(lexer, s) {
         [
             { "type": "@NEWLINE" },
             { "type": "@EOF" },
+        ],
+    );
+    assert.eq(
+        lexLN(lexer, `hello world {
+            a b c;
+        }
+        `),
+        [
+            { "type": "@IDENT", "line": 1 },
+            { "type": "@IDENT", "line": 1 },
+            { "type": "{", "line": 1 },
+            { "type": "@NEWLINE", "line": 1 },
+            { "type": "@IDENT", "line": 2 },
+            { "type": "@IDENT", "line": 2 },
+            { "type": "@IDENT", "line": 2 },
+            { "type": ";", "line": 2 },
+            { "type": "@NEWLINE", "line": 2 },
+            { "type": "}", "line": 3 },
+            { "type": "@NEWLINE", "line": 3 },
+            { "type": "@EOF", "line": 4 },
         ],
     );
 }
