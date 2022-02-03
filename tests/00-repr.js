@@ -16,9 +16,17 @@ class CustomToString {
 }
 assert.eq(repr(new CustomToString()), '<some-custom-toString>');
 
+// classes are essentially indistinguishable from functions in JS
+assert.eq(repr(CustomToString), '<function CustomToString>');
+
+// anonymous functions have no name
+assert.eq(repr(() => 0), '<function >');
 
 class NoCustomToString { }
 assert.eq(repr(new NoCustomToString()), '[object Object]');
 
 // pod
 assert.eq(repr({ b: 'world', a: 'hello' }), `{"b": "world", "a": "hello"}`);
+
+// pod where one of the keys is 'toString'
+assert.eq(repr({ toString: 'to-string' }), `{"toString": "to-string"}`);
