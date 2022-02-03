@@ -37,6 +37,7 @@ async function updateImage(bmp) {
 
 /**
  * @param {string} b64
+ * @returns {Promise<void>}
  */
 function updateImageWithBase64Data(b64) {
     return new Promise((resolve, reject) => {
