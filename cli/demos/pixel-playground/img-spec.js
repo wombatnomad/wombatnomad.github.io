@@ -2,18 +2,66 @@ import { ImageSpec } from "../../../lib/pixel-playground/img-spec.js";
 import * as fs from "fs";
 
 
-const bmp = ImageSpec.fromSource(`
+fs.writeFileSync('out01.bmp', ImageSpec.fromSource(`
 bg 100 100 20
-`).toBitmap();
-fs.writeFileSync('out.bmp', bmp.toBMPBytes());
+`).toBitmap().toBMPBytes());
 
-fs.writeFileSync('out2.bmp', ImageSpec.fromSource(`
+fs.writeFileSync('out02.bmp', ImageSpec.fromSource(`
 bg 255 255 20
 `).toBitmap().toBMPBytes());
 
-fs.writeFileSync('out3.bmp', ImageSpec.fromSource(`
+fs.writeFileSync('out03.bmp', ImageSpec.fromSource(`
 bg 255 255 20
 fg 20 20 20
-eq y = x * x
-eq y < 0
+interpolation tolerance
+draw y = x * x
+draw y < 0
+`).toBitmap().toBMPBytes());
+
+fs.writeFileSync('out04.bmp', ImageSpec.fromSource(`
+bg 255 255 20
+fg 20 20 20
+interpolation tolerance
+draw y = x * x
+draw y < 0
+`).toBitmap().toBMPBytes());
+
+fs.writeFileSync('out05.bmp', ImageSpec.fromSource(`
+bg 255 255 20
+fg 20 20 20
+draw x * x + y * y <= 100
+`).toBitmap().toBMPBytes());
+
+fs.writeFileSync('out06.bmp', ImageSpec.fromSource(`
+bg 255 255 20
+fg 20 20 20
+draw and[
+    x ** 2 + y ** 2 <= 100 ** 2,
+    y > 0
+]
+`).toBitmap().toBMPBytes());
+
+fs.writeFileSync('out07.bmp', ImageSpec.fromSource(`
+bg 255 255 20
+fg 20 20 20
+draw or[
+    x ** 2 + y ** 2 <= 10 ** 2,
+    x ** 2 + y ** 2 > 100 ** 2
+]
+`).toBitmap().toBMPBytes());
+
+fs.writeFileSync('out08.bmp', ImageSpec.fromSource(`
+bg 255 255 20
+fg 20 20 20
+draw and[
+    x ** 2 + y ** 2 <= 100 ** 2,
+    y > x,
+    y > -x,
+]
+`).toBitmap().toBMPBytes());
+
+fs.writeFileSync('out09.bmp', ImageSpec.fromSource(`
+bg 255 255 20
+fg 20 20 20
+draw y = 100 * sin(x / 100)
 `).toBitmap().toBMPBytes());
