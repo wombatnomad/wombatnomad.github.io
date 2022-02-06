@@ -20,6 +20,11 @@
             margin: 5px auto;
         }
 
+        #messages {
+            display: table;
+            margin: 5px auto;
+        }
+
         #code {
             display: table;
             width: 400px;
@@ -28,6 +33,7 @@
             font-family: 'Courier New', Courier, monospace;
         }
     </style>
+    <script src="/apps/common.js"></script>
     <script type="module" src="index.js"></script>
 </head>
 
@@ -37,8 +43,12 @@
         <img id="img" width="400" height="400"></img>
         <div id="render-button-div">
             <button id="render-button">Render</button>
+            <button id="download-button">Download Image</a>
         </div>
-        <textarea id="code">bg 0xFF646414</textarea>
+        <pre id="messages"></pre>
+        <textarea id="code">fill [255, 255, 20]
+color [20, 20, 20]
+draw y = 100 * sin(x / 100)</textarea>
     </div>
 </body>
 

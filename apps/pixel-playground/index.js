@@ -1,4 +1,5 @@
 import { Bitmap } from "../../lib/bmp.js";
+import { ImageSpec } from "../../lib/pixel-playground/img-spec.js";
 
 console.log('start');
 const W = 400;
@@ -7,25 +8,50 @@ const H = 400;
 /** @type {HTMLImageElement} */
 let img;
 
-/** @type {Bitmap} */
-let bmp;
-
 /** @type {HTMLTextAreaElement} */
 let code;
 
+/** @type {HTMLPreElement} */
+let messages;
+
+/** @type {HTMLButtonElement} */
+let renderButton;
+
+/** @type {HTMLButtonElement} */
+let downloadButton;
+
 window.onload = () => {
+    messages = /** @type {HTMLPreElement} */ (document.getElementById('messages'));
+    renderButton = /** @type {HTMLButtonElement} */ (document.getElementById('render-button'));
+    downloadButton = /** @type {HTMLButtonElement} */ (document.getElementById('download-button'));
     code = /** @type {HTMLTextAreaElement} */ (document.getElementById('code'));
     img = /** @type {HTMLImageElement} */ (document.getElementById('img'));
-    bmp = new Bitmap(W, H);
+    const bmp = new Bitmap(W, H);
 
     code.focus();
-    for (let x = 0; x < W; x++) {
-        for (let y = 0; y < H; y++) {
-            bmp.setPixel([x, y], [100, 100, 20]);
+
+    renderButton.onclick = async () => {
+        var exc = null;
+        try {
+            await updateAndRender();
+        } catch (e) {
+            exc = e;
         }
-    }
-    updateImage(bmp);
+        if (exc) {
+            messages.textContent = '' + exc;
+        } else {
+            messages.textContent = '';
+        }
+    };
+
+    renderButton.click();
 };
+
+async function updateAndRender() {
+    const spec = ImageSpec.fromSource(code.value || '');
+    const bmp = spec.toBitmap();
+    await updateImage(bmp);
+}
 
 /**
  * @param {Bitmap} bmp
@@ -41,9 +67,16 @@ async function updateImage(bmp) {
  */
 function updateImageWithBase64Data(b64) {
     return new Promise((resolve, reject) => {
-        img.src = 'data:image/bmp;base64,' + b64;
+        const link = 'data:image/bmp;base64,' + b64;
+        downloadButton.onclick = () => {
+            const a = document.createElement('a');
+            a.href = link;
+            a.download = 'image.bmp';
+            a.click();
+        };
+        img.src = link;
         img.onload = function () { resolve(); };
-        img.onerror = function () { resolve(); };
+        img.onerror = function (err) { reject(err); };
     });
 }
 
