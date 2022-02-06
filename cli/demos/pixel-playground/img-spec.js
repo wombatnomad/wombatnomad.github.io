@@ -105,3 +105,15 @@ draw x = 0
 color [abs(100 - x), abs(-100 + y), 100]
 draw y = 100 * sin(x / 100)
 `).toBitmap().toBMPBytes());
+
+fs.writeFileSync('out17.bmp', ImageSpec.fromSource(`
+color [50, 50, 50]
+draw y = 0
+draw x = 0
+color [abs(100 - x), abs(-100 + y), 100]
+draw y = 100 * sin(x / 100)
+draw x = y
+draw x = -y
+draw x ** 2 - y ** 2 = 50 ** 2
+draw y ** 2 - x ** 2 = 100 ** 2
+`).toBitmap().toBMPBytes());
