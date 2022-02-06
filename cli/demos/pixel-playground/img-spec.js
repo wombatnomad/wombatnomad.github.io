@@ -97,3 +97,11 @@ fill [abs(x), abs(y), 10]
 fs.writeFileSync('out15.bmp', ImageSpec.fromSource(`
 fill [abs(x), abs(y), abs(x + y)]
 `).toBitmap().toBMPBytes());
+
+fs.writeFileSync('out16.bmp', ImageSpec.fromSource(`
+color [50, 50, 50]
+draw y = 0
+draw x = 0
+color [abs(100 - x), abs(-100 + y), 100]
+draw y = 100 * sin(x / 100)
+`).toBitmap().toBMPBytes());
