@@ -1,5 +1,5 @@
-import assert from "../lib/assert.js";
-import { reversed, sorted } from "../lib/sort.js";
+import assert from "../lib/stable/assert.js";
+import { reversed, sorted } from "../lib/stable/sort.js";
 
 
 assert.eq(

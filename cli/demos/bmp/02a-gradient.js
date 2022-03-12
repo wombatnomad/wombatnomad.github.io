@@ -1,4 +1,4 @@
-import { Bitmap } from "../../../lib/bmp.js";
+import { Bitmap } from "../../../lib/x/bmp.js";
 import * as fs from "fs";
 
 

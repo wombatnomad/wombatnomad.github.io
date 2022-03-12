@@ -1,5 +1,5 @@
-import { ALexer } from "../lib/alexer.js";
-import assert from "../lib/assert.js";
+import { ALexer } from "../lib/stable/alexer.js";
+import assert from "../lib/stable/assert.js";
 
 
 /**

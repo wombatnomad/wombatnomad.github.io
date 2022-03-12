@@ -1,5 +1,5 @@
-import assert from '../lib/assert.js';
-import * as cmp from '../lib/ops.js';
+import assert from '../lib/stable/assert.js';
+import * as cmp from '../lib/stable/ops.js';
 
 assert.eq([1, 2, 3], [1, 2, 3], 'equivalent arrays should be equal');
 assert.neq([1, 2, 3], [1, 2, 3, 4], 'arrays should not always be equal');

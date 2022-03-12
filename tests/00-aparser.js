@@ -1,6 +1,6 @@
-import { AParser } from "../lib/aparser.js";
-import assert from "../lib/assert.js";
-import { AssertionError } from "../lib/err.js";
+import { AParser } from "../lib/stable/aparser.js";
+import assert from "../lib/stable/assert.js";
+import { AssertionError } from "../lib/stable/err.js";
 
 {
     const parser = new AParser({

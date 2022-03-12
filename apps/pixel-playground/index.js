@@ -1,4 +1,4 @@
-import { Bitmap } from "../../lib/bmp.js";
+import { Bitmap } from "../../lib/x/bmp.js";
 import { ImageSpec } from "../../lib/pixel-playground/img-spec.js";
 
 console.log('start');

@@ -1,5 +1,5 @@
-import assert from "../lib/assert.js";
-import { Matrix } from "../lib/linalg.js";
+import assert from "../lib/stable/assert.js";
+import { Matrix } from "../lib/x/linalg.js";
 
 assert.eq(Matrix.fromRows([1, 2, 3]), Matrix.fromRows([1, 2, 3]));
 assert.neq(Matrix.fromRows([1, 2, 3]), Matrix.fromRows([1, 2, 4]));

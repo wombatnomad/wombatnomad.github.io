@@ -1,5 +1,5 @@
-import assert from "../lib/assert.js";
-import { repr } from "../lib/repr.js";
+import assert from "../lib/stable/assert.js";
+import { repr } from "../lib/stable/repr.js";
 
 
 
